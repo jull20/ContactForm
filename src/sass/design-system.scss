@@ -1,0 +1,40 @@
+@font-face {
+    font-family: "Karla";
+    src: url(../assets/fonts/Karla-VariableFont_wght.ttf);
+}
+
+$white:     #FFFFFF;
+$grey-500:  #86A2A5;
+$grey-900:  #2A4144;
+$green-200: #E0F1E8;
+$green-600: #0C7D69;
+$red:       #D73C3C;
+$bold: 700;
+$regular: 400;
+@mixin text-lg{
+    font-family:    "Karla";
+    font-size:      3.2rem;
+    font-weight:    700;
+    line-height:    100%;
+    letter-spacing: -.1rem;
+}
+@mixin text-md($weight){
+    font-family:    "Karla";
+    font-size:      1.8rem;
+    font-weight:    $weight;
+    line-height:    150%;
+    letter-spacing: 0;
+}
+@mixin text-sm{
+    font-family:    "Karla";
+    font-size:      1.6rem;
+    font-weight:    400;
+    line-height:    150%;
+    letter-spacing: 0;
+}
+@mixin flex($direction, $main-axis, $cross-axis){
+    display:         flex;
+    flex-direction:  $direction;
+    justify-content: $main-axis;
+    align-items:     $cross-axis;
+}

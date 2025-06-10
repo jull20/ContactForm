@@ -1,9 +1,18 @@
-import React, { useState, type ChangeEvent } from 'react'
+import React, { useState } from 'react'
 import './css/App.css'
+
+interface formDataType{
+    firstName: string,
+    lastName:  string,
+    email:     string,
+    queryType: string,
+    message:   string,
+    checkbox:  string
+}
 
 export default function App() {
   const [hiddenProps, setHiddenProps] = useState("hidden");
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<formDataType>({
     firstName: "",
     lastName:  "",
     email:     "",
@@ -46,7 +55,7 @@ export default function App() {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>):void => {
     console.log("handleChange")
     let newValue = event.target.value;
-    if(event.target.name == "checkbox" && !event.target.checked){
+    if(event.target.name == "checkbox" && !(event.target as HTMLInputElement).checked){
       newValue = "";
     }
     setFormData({...formData, [event.target.name]: newValue}); 
@@ -55,9 +64,9 @@ export default function App() {
 
   const handleSubmit = () => {
     let isEmpty;
-    for(let field in formData){
-      isEmpty = validateForm(field, formData[field])
-    }
+    Object.entries(formData).forEach(([key, value]) => {
+      isEmpty = validateForm(key, value);
+    })
     if(!isEmpty){
       setHiddenProps("");
       setTimeout(() => { setHiddenProps("hidden"); }, 3000);
